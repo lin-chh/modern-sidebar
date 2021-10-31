@@ -5,6 +5,8 @@ import Divider from "@material-ui/core/Divider";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import Collapse from "@material-ui/core/Collapse";
+import * as s from './Sidebar.styles';
+import * as Palette from './colors'
 
 function SidebarItem({ depthStep = 10, depth = 0, expanded, item, ...rest }) {
   const [collapsed, setCollapsed] = React.useState(true);
@@ -79,25 +81,60 @@ function SidebarItem({ depthStep = 10, depth = 0, expanded, item, ...rest }) {
 }
 
 function Sidebar({ items, depthStep, depth, expanded }) {
+
+  const sidebarHeader = 'MQSI Portal' ;
+  const fonts = {
+    header: 'ZCOOL KuaiLe',
+    menu: 'Poppins'
+  };
+
+  const backgroundImage = 'images/mountain.jpg';
+
+
+  const isSidebarOpen = true ;
+
   return (
-    <div className="sidebar">
-      <List disablePadding dense>
-        {items.map((sidebarItem, index) => (
-          <React.Fragment key={`${sidebarItem.name}${index}`}>
-            {sidebarItem === "divider" ? (
-              <Divider style={{ margin: "6px 0" }} />
-            ) : (
-              <SidebarItem
-                depthStep={depthStep}
-                depth={depth}
-                expanded={expanded}
-                item={sidebarItem}
-              />
-            )}
-          </React.Fragment>
-        ))}
-      </List>
-    </div>
+    <s.SidebarContainer colorPalette={Palette.silver} isSidebarOpen={isSidebarOpen} backgroundImage={backgroundImage}>
+      <s.SidebarHeader font={fonts.header}>{sidebarHeader}</s.SidebarHeader>
+
+      <s.MenuItemContainer>
+        <List disablePadding dense>
+          {items.map((sidebarItem, index) => (
+            <React.Fragment key={`${sidebarItem.name}${index}`}>
+              {sidebarItem === "divider" ? (
+                <Divider style={{ margin: "6px 0" }} />
+              ) : (
+                <SidebarItem
+                  depthStep={depthStep}
+                  depth={depth}
+                  expanded={expanded}
+                  item={sidebarItem}
+                />
+              )}
+            </React.Fragment>
+          ))}
+        </List>
+      </s.MenuItemContainer>
+    </s.SidebarContainer>
+
+    /*     <div className="sidebar">
+          <List disablePadding dense>
+            {items.map((sidebarItem, index) => (
+              <React.Fragment key={`${sidebarItem.name}${index}`}>
+                {sidebarItem === "divider" ? (
+                  <Divider style={{ margin: "6px 0" }} />
+                ) : (
+                  <SidebarItem
+                    depthStep={depthStep}
+                    depth={depth}
+                    expanded={expanded}
+                    item={sidebarItem}
+                  />
+                )}
+              </React.Fragment>
+            ))}
+          </List>
+        </div> */
   );
 }
 
