@@ -19,11 +19,11 @@ export const SidebarContainer = styled.div`
 `
 
 export const SidebarHeader = styled.h3`
+  margin-top: 0px;
   padding: 20px 0;
   text-align: center;
   margin-bottom: 10px;
   letter-spacing: 6px;
-  font-family: ${p => p.font}
 `
 
 export const MenuItemContainer = styled.div``;
